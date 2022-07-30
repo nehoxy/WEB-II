@@ -48,8 +48,12 @@ function cargarDatosVisitas(){
 
 function armarTabla(){
     for(i=0;i<pacientes.length;i++){
-    
-
+        
+        /*
+        if(i!=0){
+            borrarTabla();
+        }
+        */
         let tabla = document.getElementById("tabla-dinamica");
 
         let tr = document.createElement("tr");
@@ -79,6 +83,7 @@ function armarTabla(){
         tr1.appendChild(td4);
         
         for(j=0;j<visitas.length;j++){
+            
             if(pacientes[i][0] == visitas[j][0]){
                 
                 let tabla = document.getElementById("tabla-dinamica");
@@ -108,6 +113,8 @@ function armarTabla(){
                 let td8 = document.createElement("td")
                 td8.textContent = visitas[j][4] // arancel
                 tr2.appendChild(td8)
+
+                indiceVisitas++;
             }
             
         }
@@ -120,7 +127,23 @@ function armarTabla(){
     
 }
 
+function borrarTabla(){
+    
+    for(i=0;i<pacientes.length;i++){
+        let tabla = document.getElementById("tabla-dinamica");
+        let tr1 = document.getElementById("fila"+i);
+        tabla.removeChild(tr1);
+        for(j=0;j<visitas.length;j++){
+            let tabla = document.getElementById("tabla-dinamica");
+            let tr2 = document.getElementById("filav"+j);
+            tabla.removeChild(tr2);
+        }
+    }
+    
 
+
+    
+}
 
 
 /*
