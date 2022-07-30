@@ -1,9 +1,12 @@
-var contador = 0;
+var contPacientes = 0;
+var contVisitas = 0;
+var indiceVisitas = 1;
 var pacientes = new Array();
+var visitas = new Array()
 
 function cargarDatosPaciente(){
     
-    pacientes[contador] = new Array(5);
+    pacientes[contPacientes] = new Array(5);
 
     let legajo = document.getElementById("legajo").value;
     let apellido = document.getElementById("apellido").value;
@@ -11,55 +14,146 @@ function cargarDatosPaciente(){
     let email = document.getElementById("email").value;
     let telefono = document.getElementById("telefono").value;
 
-    pacientes[contador][0] = legajo;
-    pacientes[contador][1] = apellido;
-    pacientes[contador][2] = nombre;
-    pacientes[contador][3] = email;
-    pacientes[contador][4] = telefono;
+    pacientes[contPacientes][0] = legajo;
+    pacientes[contPacientes][1] = apellido;
+    pacientes[contPacientes][2] = nombre;
+    pacientes[contPacientes][3] = email;
+    pacientes[contPacientes][4] = telefono;
 
-    contador++
+    contPacientes++
     console.log(pacientes);
 
 }
 
-function armartabla(){
-    indice++;
+function cargarDatosVisitas(){
 
-    const tabla = document.getElementById("tabla-dinamica");
-    const tr = document.createElement("tr");
-    tr.id = "fila"+indice;
-    tabla.appendChild(tr);
+    visitas[contVisitas] = new Array(5);
 
-    const tr1 = document.getElementById("fila"+indice);
-    
-    const th = document.createElement("th");
-    th.textContent = indice
-    tr1.appendChild(th);
+    let legajoVisitas = document.getElementById("legajoVisita").value;
+    let fecha = document.getElementById("fecha").value;
+    let hora = document.getElementById("hora").value;
+    let diagnostico = document.getElementById("diagnostico").value;
+    let arancel = document.getElementById("arancel").value;
 
-    const td1 = document.createElement("td")
-    td1.textContent = document.getElementById("materia").value;
-    tr1.appendChild(td1);
+    visitas[contVisitas][0] = legajoVisitas
+    visitas[contVisitas][1] = fecha
+    visitas[contVisitas][2] = hora
+    visitas[contVisitas][3] = diagnostico
+    visitas[contVisitas][4] = arancel
 
-    
-    const td2 = document.createElement("td");
-    td2.textContent = document.getElementById("calificacion").value;
-    tr1.appendChild(td2);
-
-    document.getElementById("materia").value = "";
-    document.getElementById("calificacion").value = "";
-
-    
-    total = total + parseInt(td2.textContent);
-    /*
-    promedio = total / indice;
-    document.getElementById("promedio").textContent = promedio.toFixed(1)
-    */
+    contVisitas++
+    console.log(visitas);
     
 }
 
-function calcularPromedio(){
-    let promedio = 0;
-    promedio = total / indice;
-    document.getElementById("promedio").textContent = promedio.toFixed(1);
+function armarTabla(){
+    for(i=0;i<pacientes.length;i++){
+    
+
+        let tabla = document.getElementById("tabla-dinamica");
+
+        let tr = document.createElement("tr");
+        tr.id = "fila"+i;
+        tabla.appendChild(tr);
+
+        let tr1 = document.getElementById("fila"+i);
+        
+        let th = document.createElement("th");
+        th.textContent = pacientes[i][0] // legajo
+        tr1.appendChild(th);
+
+        let td1 = document.createElement("td")
+        td1.textContent = pacientes[i][1] // apellido
+        tr1.appendChild(td1);
+
+        let td2 = document.createElement("td");
+        td2.textContent = pacientes[i][2] // nombre
+        tr1.appendChild(td2);
+
+        let td3 = document.createElement("td");
+        td3.textContent = pacientes[i][3] // email
+        tr1.appendChild(td3);
+
+        let td4 = document.createElement("td");
+        td4.textContent = pacientes[i][4] // telefono
+        tr1.appendChild(td4);
+        
+        for(j=0;j<visitas.length;j++){
+            if(pacientes[i][0] == visitas[j][0]){
+                
+                let tabla = document.getElementById("tabla-dinamica");
+                
+                let trVisitas = document.createElement("tr");
+                trVisitas.id = "filav"+j;
+                tabla.appendChild(trVisitas);
+        
+                let tr2 = document.getElementById("filav"+j);
+        
+                let tdIndice = document.createElement("td");
+                tdIndice.textContent = "#"+indiceVisitas;
+                tr2.appendChild(tdIndice);
+                
+                let td5 = document.createElement("td")
+                td5.textContent = visitas[j][1] // fecha
+                tr2.appendChild(td5);
+        
+                let td6 = document.createElement("td")
+                td6.textContent = visitas[j][2] // hora
+                tr2.appendChild(td6);
+        
+                let td7 = document.createElement("td")
+                td7.textContent = visitas[j][3] // diagnostico
+                tr2.appendChild(td7)
+        
+                let td8 = document.createElement("td")
+                td8.textContent = visitas[j][4] // arancel
+                tr2.appendChild(td8)
+            }
+            
+        }
+        
+    }
+
+    
+    
+   
     
 }
+
+
+
+
+/*
+for(j=0;j<=visitas.length;j++){
+    if(pacientes[i][0] == visitas[j][0]){
+        alert("a");
+        let tabla = document.getElementById("tabla-dinamica");
+        
+        let trVisitas = document.createElement("tr");
+        trVisitas.id = "filav"+j;
+        tabla.appendChild(trVisitas);
+
+        let tr2 = document.getElementById("filav"+j);
+
+        let tdIndice = document.createElement("td");
+        tdIndice.textContent = "#"+j+1;
+        tr2.appendChild(tdIndice);
+        
+        let td5 = document.createElement("td")
+        td5.textContent = visitas[j][1] // fecha
+        tr2.appendChild(td5);
+
+        let td6 = document.createElement("td")
+        td6.textContent = visitas[j][2] // hora
+        tr2.appendChild(td6);
+
+        let td7 = document.createElement("td")
+        td7.textContent = visitas[j][3] // diagnostico
+        tr2.appendChild(td7)
+
+        let td8 = document.createElement("td")
+        td8.textContent = visitas[j][4] // arancel
+        tr2.appendChild(td8)
+    }
+}
+*/

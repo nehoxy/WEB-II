@@ -16,10 +16,16 @@
   <div class="container">
     <div class="row mt-2 mb-3">
       <div class="col-12 ">
-        <!-- Button trigger modal -->
+
+        <!-- botones -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Cargar pacientes
         </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#exampleModal2">
+          Cargar visitas
+        </button>
+        <button type="button" class="btn btn-primary" onclick="armarTabla()">Armar Tabla</button>
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -59,12 +65,7 @@
         </div>
         
       <div class="col-12">
-        <!-- Button trigger modal -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-          Cargar visitas
-        </button>
-
+        
         <!-- Modal -->
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -75,26 +76,57 @@
               </div>
               <div class="modal-body">
                 <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Legajo</span>
+                  <input id="legajoVisita" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
-                  <input id="email" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  <input id="fecha" type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">Hora</span>
-                  <input id="email" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  <input id="hora" type="time" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Diagnostico</span>
-                    <input id="email" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input id="diagnostico" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Arancel</span>
+                    <input id="arancel" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="armartabla()">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="cargarDatosVisitas()">Save changes</button>
               </div>
             </div>
           </div>
         </div>
         
+        <table id="prueba" class="table mt-5">
+          <thead>
+            <tr>
+              <th scope="col">Legajo</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefono</th>
+            </tr>
+          </thead>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Diagostico</th>
+              <th scope="col">Arancel</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-dinamica">
+            
+          </tbody>
+        </table>
 
   <script src="bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
   <script src="prueba.js"></script>
