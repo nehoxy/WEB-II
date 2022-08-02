@@ -3,6 +3,7 @@ var contVisitas = 0;
 var indiceVisitas = 1;
 var pacientes = new Array();
 var visitas = new Array()
+var llave = false;
 
 function cargarDatosPaciente(){
     
@@ -23,6 +24,7 @@ function cargarDatosPaciente(){
     contPacientes++
     console.log(pacientes);
 
+    
 }
 
 function cargarDatosVisitas(){
@@ -47,13 +49,10 @@ function cargarDatosVisitas(){
 }
 
 function armarTabla(){
+    
     for(i=0;i<pacientes.length;i++){
         
-        /*
-        if(i!=0){
-            borrarTabla();
-        }
-        */
+        
         let tabla = document.getElementById("tabla-dinamica");
 
         let tr = document.createElement("tr");
@@ -81,7 +80,7 @@ function armarTabla(){
         let td4 = document.createElement("td");
         td4.textContent = pacientes[i][4] // telefono
         tr1.appendChild(td4);
-        
+       
         for(j=0;j<visitas.length;j++){
             
             if(pacientes[i][0] == visitas[j][0]){
@@ -93,11 +92,13 @@ function armarTabla(){
                 tabla.appendChild(trVisitas);
         
                 let tr2 = document.getElementById("filav"+j);
-        
+                
+                /*
                 let tdIndice = document.createElement("td");
                 tdIndice.textContent = "#"+indiceVisitas;
                 tr2.appendChild(tdIndice);
-                
+                */
+
                 let td5 = document.createElement("td")
                 td5.textContent = visitas[j][1] // fecha
                 tr2.appendChild(td5);
@@ -116,7 +117,7 @@ function armarTabla(){
 
                 indiceVisitas++;
             }
-            
+        
         }
         
     }
@@ -129,7 +130,7 @@ function armarTabla(){
 
 function borrarTabla(){
     
-    for(i=0;i<pacientes.length;i++){
+    for(i=0;i<=pacientes.length;i++){
         let tabla = document.getElementById("tabla-dinamica");
         let tr1 = document.getElementById("fila"+i);
         tabla.removeChild(tr1);
